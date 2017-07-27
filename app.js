@@ -5,7 +5,7 @@ var express         = require("express"),
     mongoose        = require('mongoose');
 
 // Connection to DB
-mongoose.connect('mongodb://localhost/tvshows', function(err, res) {
+mongoose.connect(process.env.MONGOLAB_URI, function(err, res) {
   if(err) throw err;
   console.log('Connected to Database');
 });
@@ -38,9 +38,9 @@ tvshows.route('/tvshows/:id')
   .put(TVShowCtrl.updateTVShow)
   .delete(TVShowCtrl.deleteTVShow);
 
-app.use(tvshows);
+app.use(express.static(__dirname + '/'));
 
 // Start server
-app.listen(3000, function() {
+app.listen(process.env.PORT || 5000, function() {
   console.log("Node server running on http://localhost:3000");
 });
