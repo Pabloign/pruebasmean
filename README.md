@@ -1,2 +1,0 @@
-# pruebasmean
-probando MEAN
